@@ -5,7 +5,7 @@ public class EtkinlikRequestParameters : RequestParameters
     public bool IsActive { get; set; }
     public int PageNumber { get; set; }
     public int PageSize { get; set; }
-    public EtkinlikRequestParameters() : this(1, 6)
+    public EtkinlikRequestParameters() : this(1, 8)
     {
 
     }

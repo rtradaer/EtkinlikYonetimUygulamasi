@@ -8,6 +8,7 @@ public interface IEtkinlikService
 {
     IEnumerable<Etkinlik> GetAllEtkinlik(bool trackChanges);
     IEnumerable<Etkinlik> GetAllEtkinlikWithDetails(EtkinlikRequestParameters p);
+    IEnumerable<Etkinlik> GetAllEtkinlikWithDetails(EtkinlikRequestParameters p, int id);
     Etkinlik? GetOneEtkinlik(int id, bool trackChanges);
     void CreateEtkinlik(Etkinlik etkinlik);
     void DeleteEtkinlik(Etkinlik etkinlik);

@@ -15,9 +15,20 @@ public class EtkinlikRepository : RepositoryBase<Etkinlik>, IEtkinlikRepository
     public IQueryable<Etkinlik> GetAllEtkinlikWithDetails_Repo(EtkinlikRequestParameters p)
     {
         return _context.Etkinlikler
-            .ToPaginate(p.PageNumber, p.PageSize)
             .OrderByDescending(e => e.CreatedAt)
-            .Where(e => e.IsActive);
+            .ToPaginate(p.PageNumber, p.PageSize)
+            .Where(e => e.IsActive)
+            .Where(e => e.EndDate > DateTime.Now);
+    }
+
+    public IQueryable<Etkinlik> GetAllEtkinlikWithDetails_Repo(EtkinlikRequestParameters p, int id)
+    {
+        return _context.Etkinlikler
+            .OrderByDescending(e => e.CreatedAt)
+            .ToPaginate(p.PageNumber, p.PageSize)
+            .Where(e => e.Id != id)
+            .Where(e => e.IsActive)
+            .Where(e => e.EndDate > DateTime.Now);
     }
 
     public Etkinlik? GetOneEtkinlik_Repo(int id, bool trackChanges) => FindByCondition(x => x.Id == id, trackChanges);

@@ -23,6 +23,7 @@ public class EtkinlikManager : IEtkinlikService
     public IEnumerable<Etkinlik> GetAllEtkinlik(bool trackChanges) => _manager.EtkinlikRepository.GetAllEtkinlik_Repo(trackChanges);
 
     public IEnumerable<Etkinlik> GetAllEtkinlikWithDetails(EtkinlikRequestParameters p) => _manager.EtkinlikRepository.GetAllEtkinlikWithDetails_Repo(p);
+    public IEnumerable<Etkinlik> GetAllEtkinlikWithDetails(EtkinlikRequestParameters p, int id) => _manager.EtkinlikRepository.GetAllEtkinlikWithDetails_Repo(p, id);
 
     public Etkinlik? GetOneEtkinlik(int id, bool trackChanges) => _manager.EtkinlikRepository.GetOneEtkinlik_Repo(id, trackChanges);
 }

@@ -16,10 +16,9 @@ public class AccountController : Controller
         _signInManager = signInManager;
     }
 
-    public IActionResult Login([FromQuery(Name = "ReturnUrl")] string returnUrl = "/")
+    public IActionResult Login()
     {
-        LoginModel loginModel = new LoginModel() { ReturnUrl = returnUrl };
-        return View(loginModel);
+        return View();
     }
 
     [HttpPost]
@@ -34,9 +33,13 @@ public class AccountController : Controller
                 await _signInManager.SignOutAsync();
                 if ((await _signInManager.PasswordSignInAsync(user, model.Password, false, false)).Succeeded)
                 {
-                    return Redirect(model?.ReturnUrl ?? "/");
+                    return Redirect("/");
                 }
                 ModelState.AddModelError("Hata", "Hatalı kullanıcı adı veya parola.");
+            }
+            else
+            {
+                ModelState.AddModelError("Hata", "Böyle bir kullanıcı bulunamadı.");
             }
         }
         return View();

@@ -16,7 +16,12 @@ public class EtkinlikConfig : IEntityTypeConfiguration<Etkinlik>
             EtkinlikSeedData.GetEtkinlikler(2),
             EtkinlikSeedData.GetEtkinlikler(3),
             EtkinlikSeedData.GetEtkinlikler(4),
-            EtkinlikSeedData.GetEtkinlikler(5)
+            EtkinlikSeedData.GetEtkinlikler(5),
+            EtkinlikSeedData.GetEtkinlikler(6),
+            EtkinlikSeedData.GetEtkinlikler(7),
+            EtkinlikSeedData.GetEtkinlikler(8),
+            EtkinlikSeedData.GetEtkinlikler(9),
+            EtkinlikSeedData.GetEtkinlikler(10)
         );
     }
 }

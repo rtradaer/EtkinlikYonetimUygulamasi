@@ -130,9 +130,9 @@ namespace Main.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2025, 8, 19, 4, 48, 36, 736, DateTimeKind.Local).AddTicks(4767),
+                            CreatedAt = new DateTime(2025, 8, 19, 17, 52, 0, 763, DateTimeKind.Local).AddTicks(9287),
                             EndDate = new DateTime(2025, 9, 10, 18, 0, 0, 0, DateTimeKind.Unspecified),
-                            ImageUrl = "",
+                            ImageUrl = "/images/1.jpg",
                             IsActive = true,
                             LongDescription = "Yazılım sektöründeki en güncel gelişmelerin konuşulacağı, atölye ve panellerin düzenleneceği büyük bir etkinlik.",
                             ShortDescription = "Yazılım dünyasının önde gelen isimleriyle buluşma.",
@@ -142,9 +142,9 @@ namespace Main.Migrations
                         new
                         {
                             Id = 2,
-                            CreatedAt = new DateTime(2025, 8, 22, 4, 48, 36, 736, DateTimeKind.Local).AddTicks(4789),
+                            CreatedAt = new DateTime(2025, 8, 22, 17, 52, 0, 763, DateTimeKind.Local).AddTicks(9310),
                             EndDate = new DateTime(2025, 10, 5, 17, 0, 0, 0, DateTimeKind.Unspecified),
-                            ImageUrl = "",
+                            ImageUrl = "/images/2.jpg",
                             IsActive = true,
                             LongDescription = "Katılımcılar, iş fikri geliştirme ve sunum teknikleri üzerine eğitim alacaklar.",
                             ShortDescription = "Girişimcilik üzerine uygulamalı eğitim.",
@@ -154,9 +154,9 @@ namespace Main.Migrations
                         new
                         {
                             Id = 3,
-                            CreatedAt = new DateTime(2025, 8, 24, 4, 48, 36, 736, DateTimeKind.Local).AddTicks(4793),
+                            CreatedAt = new DateTime(2025, 8, 24, 17, 52, 0, 763, DateTimeKind.Local).AddTicks(9318),
                             EndDate = new DateTime(2025, 11, 20, 19, 0, 0, 0, DateTimeKind.Unspecified),
-                            ImageUrl = "",
+                            ImageUrl = "/images/3.jpg",
                             IsActive = true,
                             LongDescription = "Yenilikçi sanat eserlerinin ve teknolojik ürünlerin sergileneceği bir etkinlik.",
                             ShortDescription = "Teknoloji ile sanatın buluştuğu sergi.",
@@ -166,9 +166,9 @@ namespace Main.Migrations
                         new
                         {
                             Id = 4,
-                            CreatedAt = new DateTime(2025, 8, 26, 4, 48, 36, 736, DateTimeKind.Local).AddTicks(4844),
+                            CreatedAt = new DateTime(2025, 8, 26, 17, 52, 0, 763, DateTimeKind.Local).AddTicks(9325),
                             EndDate = new DateTime(2025, 9, 25, 17, 0, 0, 0, DateTimeKind.Unspecified),
-                            ImageUrl = "",
+                            ImageUrl = "/images/4.jpg",
                             IsActive = true,
                             LongDescription = "Katılımcılar, firmalarla birebir görüşme ve iş/staj başvurusu yapma imkanı bulacaklar.",
                             ShortDescription = "Farklı sektörlerden firmalarla tanışma fırsatı.",
@@ -178,9 +178,9 @@ namespace Main.Migrations
                         new
                         {
                             Id = 5,
-                            CreatedAt = new DateTime(2025, 8, 27, 4, 48, 36, 736, DateTimeKind.Local).AddTicks(4847),
+                            CreatedAt = new DateTime(2025, 8, 27, 17, 52, 0, 763, DateTimeKind.Local).AddTicks(9333),
                             EndDate = new DateTime(2025, 12, 2, 18, 0, 0, 0, DateTimeKind.Unspecified),
-                            ImageUrl = "",
+                            ImageUrl = "/images/5.jpg",
                             IsActive = true,
                             LongDescription = "Katılımcılar, mobil uygulama geliştirme süreçlerini uygulamalı olarak öğrenecekler.",
                             ShortDescription = "Mobil uygulama geliştirme temelleri.",
@@ -190,14 +190,74 @@ namespace Main.Migrations
                         new
                         {
                             Id = 6,
-                            CreatedAt = new DateTime(2025, 8, 28, 4, 48, 36, 736, DateTimeKind.Local).AddTicks(4851),
+                            CreatedAt = new DateTime(2025, 8, 28, 17, 52, 0, 763, DateTimeKind.Local).AddTicks(9341),
                             EndDate = new DateTime(2025, 9, 15, 18, 0, 0, 0, DateTimeKind.Unspecified),
-                            ImageUrl = "",
+                            ImageUrl = "/images/6.jpg",
                             IsActive = true,
                             LongDescription = "Uzman konuşmacılarla yapay zeka teknolojilerinin bugünü ve geleceği tartışılacak.",
                             ShortDescription = "Yapay zeka alanındaki güncel gelişmeler.",
                             StartDate = new DateTime(2025, 9, 15, 15, 0, 0, 0, DateTimeKind.Unspecified),
                             Title = "Yapay Zeka Paneli"
+                        },
+                        new
+                        {
+                            Id = 7,
+                            CreatedAt = new DateTime(2025, 8, 21, 17, 52, 0, 763, DateTimeKind.Local).AddTicks(9348),
+                            EndDate = new DateTime(2025, 10, 12, 16, 0, 0, 0, DateTimeKind.Unspecified),
+                            ImageUrl = "/images/7.jpg",
+                            IsActive = true,
+                            LongDescription = "Alanında uzman konuşmacılarla siber güvenlikte güncel tehditler ve alınabilecek önlemler tartışılacak.",
+                            ShortDescription = "Siber tehditler ve korunma yolları.",
+                            StartDate = new DateTime(2025, 10, 12, 10, 0, 0, 0, DateTimeKind.Unspecified),
+                            Title = "Siber Güvenlik Semineri"
+                        },
+                        new
+                        {
+                            Id = 8,
+                            CreatedAt = new DateTime(2025, 8, 23, 17, 52, 0, 763, DateTimeKind.Local).AddTicks(9356),
+                            EndDate = new DateTime(2025, 11, 5, 17, 0, 0, 0, DateTimeKind.Unspecified),
+                            ImageUrl = "/images/8.jpg",
+                            IsActive = true,
+                            LongDescription = "Katılımcılar, veri bilimi projelerinde kullanılan araçları ve teknikleri uygulamalı olarak öğrenecekler.",
+                            ShortDescription = "Veri analizi ve makine öğrenmesi uygulamaları.",
+                            StartDate = new DateTime(2025, 11, 5, 9, 0, 0, 0, DateTimeKind.Unspecified),
+                            Title = "Veri Bilimi Çalıştayı"
+                        },
+                        new
+                        {
+                            Id = 9,
+                            CreatedAt = new DateTime(2025, 8, 25, 17, 52, 0, 763, DateTimeKind.Local).AddTicks(9423),
+                            EndDate = new DateTime(2025, 12, 11, 12, 0, 0, 0, DateTimeKind.Unspecified),
+                            ImageUrl = "/images/9.jpg",
+                            IsActive = true,
+                            LongDescription = "Takımlar halinde katılımcılar, 24 saat boyunca kendi oyunlarını geliştirecekler ve jüriye sunacaklar.",
+                            ShortDescription = "24 saatlik oyun geliştirme maratonu.",
+                            StartDate = new DateTime(2025, 12, 10, 12, 0, 0, 0, DateTimeKind.Unspecified),
+                            Title = "Oyun Geliştirme Hackathonu"
+                        },
+                        new
+                        {
+                            Id = 10,
+                            CreatedAt = new DateTime(2025, 8, 20, 17, 52, 0, 763, DateTimeKind.Local).AddTicks(9431),
+                            EndDate = new DateTime(2025, 10, 20, 18, 0, 0, 0, DateTimeKind.Unspecified),
+                            ImageUrl = "/images/10.jpg",
+                            IsActive = true,
+                            LongDescription = "Görüntü işleme alanında yapay zekanın kullanımı ve örnek projeler anlatılacak.",
+                            ShortDescription = "Görüntü işleme ve yapay zeka uygulamaları.",
+                            StartDate = new DateTime(2025, 10, 20, 14, 0, 0, 0, DateTimeKind.Unspecified),
+                            Title = "Yapay Zeka ile Görüntü İşleme"
+                        },
+                        new
+                        {
+                            Id = 11,
+                            CreatedAt = new DateTime(2025, 8, 22, 17, 52, 0, 763, DateTimeKind.Local).AddTicks(9439),
+                            EndDate = new DateTime(2025, 11, 15, 19, 0, 0, 0, DateTimeKind.Unspecified),
+                            ImageUrl = "/images/11.jpg",
+                            IsActive = true,
+                            LongDescription = "Blockchain teknolojisinin geleceği ve kripto paraların sektöre etkisi uzmanlar tarafından tartışılacak.",
+                            ShortDescription = "Blockchain ve kripto paralar üzerine panel.",
+                            StartDate = new DateTime(2025, 11, 15, 16, 0, 0, 0, DateTimeKind.Unspecified),
+                            Title = "Blockchain Teknolojileri Paneli"
                         });
                 });
 

@@ -8,6 +8,7 @@ public interface IEtkinlikRepository
 {
     IQueryable<Etkinlik> GetAllEtkinlik_Repo(bool trackChanges);
     IQueryable<Etkinlik> GetAllEtkinlikWithDetails_Repo(EtkinlikRequestParameters p);
+    IQueryable<Etkinlik> GetAllEtkinlikWithDetails_Repo(EtkinlikRequestParameters p, int id);
     Etkinlik? GetOneEtkinlik_Repo(int id, bool trackChanges);
     void CreateEtkinlik_Repo(Etkinlik activity);
     void DeleteEtkinlik_Repo(Etkinlik activity);

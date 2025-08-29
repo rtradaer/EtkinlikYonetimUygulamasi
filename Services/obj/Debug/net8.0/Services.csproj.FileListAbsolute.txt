@@ -15,3 +15,4 @@ C:\Users\msi\Desktop\Project\Services\obj\Debug\net8.0\Services.dll
 C:\Users\msi\Desktop\Project\Services\obj\Debug\net8.0\refint\Services.dll
 C:\Users\msi\Desktop\Project\Services\obj\Debug\net8.0\Services.pdb
 C:\Users\msi\Desktop\Project\Services\obj\Debug\net8.0\ref\Services.dll
+C:\Users\msi\Desktop\Project\Services\obj\Debug\net8.0\Services.sourcelink.json
