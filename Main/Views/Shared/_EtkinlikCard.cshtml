@@ -1,0 +1,20 @@
+@model Etkinlik
+
+<div class="card mx-4 my-4" style="width: 18rem; position: relative;">
+  <img class="card-img-top" src="..." alt="Card image cap">
+  <div class="card-body">
+    <h5 class="card-title">@Model.Title</h5>
+    <p class="card-text mb-1">
+      <strong>Başlangıç:</strong> @Model.StartDate.ToString("dd.MM.yyyy HH:mm")<br />
+      <strong>Bitiş:</strong> @Model.EndDate.ToString("dd.MM.yyyy HH:mm")
+    </p>
+    <p class="card-text">@Model.ShortDescription</p>
+    <a class="btn btn-secondary" asp-controller="Etkinlik" asp-action="Details" asp-route-id="@Model.Id">Detaylar</a>
+    <span style="position: absolute; right: 10px; bottom: 10px; font-size: 0.9em; color: #888;">
+      @{
+        var gunFarki = (DateTime.Now - Model.CreatedAt).Days;
+      }
+      @(gunFarki == 0 ? "Bugün eklendi" : $"{gunFarki} gün önce")
+    </span>
+  </div>
+</div>

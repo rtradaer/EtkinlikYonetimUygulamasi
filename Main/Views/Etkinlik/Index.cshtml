@@ -1,0 +1,10 @@
+@model EtkinlikListViewModel
+
+<div class="row">
+    <div class="row my-3">
+        @foreach (Etkinlik item in Model.Etkinlikler)
+        {
+            <partial name="_EtkinlikCard" model="item" />
+        }
+    </div>
+</div>
