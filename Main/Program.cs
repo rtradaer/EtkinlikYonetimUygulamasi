@@ -11,6 +11,8 @@ builder.Services.Configure_Repository_Registration();
 builder.Services.Configure_Session();
 builder.Services.Configure_Identity();
 
+builder.Services.AddAutoMapper(typeof(Program)); //mapper
+
 var app = builder.Build();
 
 

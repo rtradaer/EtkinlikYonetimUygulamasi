@@ -6,8 +6,10 @@ public class LoginModel
 {
     private string? _returnurl;
 
-    [Required(ErrorMessage = "Kullanıcı adı alanı zorunludur.")]
-    public string? Name { get; set; }
+    [DataType(DataType.EmailAddress)]
+    [Required(ErrorMessage = "E-mail alanı zorunludur.")]
+    public string? Email { get; set; }
+
     [Required(ErrorMessage = "Şifre alanı zorunludur.")]
     public string? Password { get; set; }
 

@@ -9,6 +9,7 @@ public class AccountController : Controller
 {
     private readonly UserManager<ApplicationUser> _userManager;
     private readonly SignInManager<ApplicationUser> _signInManager;
+   
 
     public AccountController(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager)
     {
@@ -27,7 +28,7 @@ public class AccountController : Controller
     {
         if (ModelState.IsValid)
         {
-            ApplicationUser user = await _userManager.FindByNameAsync(model.Name);
+            ApplicationUser user = await _userManager.FindByEmailAsync(model.Email);
             if (user is not null)
             {
                 await _signInManager.SignOutAsync();
@@ -35,7 +36,7 @@ public class AccountController : Controller
                 {
                     return Redirect("/");
                 }
-                ModelState.AddModelError("Hata", "Hatalı kullanıcı adı veya parola.");
+                ModelState.AddModelError("Hata", "Hatalı E-mail veya parola.");
             }
             else
             {
@@ -71,9 +72,11 @@ public class AccountController : Controller
 
         ApplicationUser user = new ApplicationUser()
         {
-            UserName = model.UserName,
+            FirstName = model.FirstName,
+            LastName = model.LastName,
             Email = model.Email,
-            BirthDate = model.BirthDate
+            BirthDate = model.BirthDate,
+            UserName = model.Email
         };
 
         var result = await _userManager.CreateAsync(user, model.Password);
@@ -87,12 +90,26 @@ public class AccountController : Controller
         {
             foreach (var item in result.Errors)
             {
-                ModelState.AddModelError("", item.Description);
+                if (item.Code.Contains("DuplicateUserName"))
+                    continue;
+                else if (item.Code.Contains("DuplicateEmail"))
+                    ModelState.AddModelError("", "Bu e-posta adresi zaten kayıtlı.");
+                else if (item.Code.Contains("PasswordTooShort"))
+                    ModelState.AddModelError("", "Parola en az 8 karakterden oluşmalıdır.");
+                else if (item.Code.Contains("PasswordRequiresNonAlphanumeric"))
+                    ModelState.AddModelError("", "Parola en az bir özel karakter içermelidir.");
+                else if (item.Code.Contains("PasswordRequiresDigit"))
+                    ModelState.AddModelError("", "Parola en az bir rakam içermelidir.");
+                else if (item.Code.Contains("PasswordRequiresLower"))
+                    ModelState.AddModelError("", "Parola en az bir küçük karakter içermelidir.");
+                else if (item.Code.Contains("PasswordRequiresUpper"))
+                    ModelState.AddModelError("", "Parola en az bir büyük karakter içermelidir.");
+                else
+                    ModelState.AddModelError("", item.Description);
             }
         }
 
         return View(model);
     }
-
 
 }

@@ -12,8 +12,8 @@ using Repositories;
 namespace Main.Migrations
 {
     [DbContext(typeof(RepositoryContext))]
-    [Migration("20250829145200_AddBirthDateToApplicationUser")]
-    partial class AddBirthDateToApplicationUser
+    [Migration("20250830194608_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -46,6 +46,12 @@ namespace Main.Migrations
 
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("bit");
+
+                    b.Property<string>("FirstName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LastName")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("LockoutEnabled")
                         .HasColumnType("bit");
@@ -133,7 +139,7 @@ namespace Main.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2025, 8, 19, 17, 52, 0, 763, DateTimeKind.Local).AddTicks(9287),
+                            CreatedAt = new DateTime(2025, 8, 20, 22, 46, 7, 905, DateTimeKind.Local).AddTicks(1381),
                             EndDate = new DateTime(2025, 9, 10, 18, 0, 0, 0, DateTimeKind.Unspecified),
                             ImageUrl = "/images/1.jpg",
                             IsActive = true,
@@ -145,7 +151,7 @@ namespace Main.Migrations
                         new
                         {
                             Id = 2,
-                            CreatedAt = new DateTime(2025, 8, 22, 17, 52, 0, 763, DateTimeKind.Local).AddTicks(9310),
+                            CreatedAt = new DateTime(2025, 8, 23, 22, 46, 7, 905, DateTimeKind.Local).AddTicks(1405),
                             EndDate = new DateTime(2025, 10, 5, 17, 0, 0, 0, DateTimeKind.Unspecified),
                             ImageUrl = "/images/2.jpg",
                             IsActive = true,
@@ -157,7 +163,7 @@ namespace Main.Migrations
                         new
                         {
                             Id = 3,
-                            CreatedAt = new DateTime(2025, 8, 24, 17, 52, 0, 763, DateTimeKind.Local).AddTicks(9318),
+                            CreatedAt = new DateTime(2025, 8, 25, 22, 46, 7, 905, DateTimeKind.Local).AddTicks(1412),
                             EndDate = new DateTime(2025, 11, 20, 19, 0, 0, 0, DateTimeKind.Unspecified),
                             ImageUrl = "/images/3.jpg",
                             IsActive = true,
@@ -169,7 +175,7 @@ namespace Main.Migrations
                         new
                         {
                             Id = 4,
-                            CreatedAt = new DateTime(2025, 8, 26, 17, 52, 0, 763, DateTimeKind.Local).AddTicks(9325),
+                            CreatedAt = new DateTime(2025, 8, 27, 22, 46, 7, 905, DateTimeKind.Local).AddTicks(1418),
                             EndDate = new DateTime(2025, 9, 25, 17, 0, 0, 0, DateTimeKind.Unspecified),
                             ImageUrl = "/images/4.jpg",
                             IsActive = true,
@@ -181,7 +187,7 @@ namespace Main.Migrations
                         new
                         {
                             Id = 5,
-                            CreatedAt = new DateTime(2025, 8, 27, 17, 52, 0, 763, DateTimeKind.Local).AddTicks(9333),
+                            CreatedAt = new DateTime(2025, 8, 28, 22, 46, 7, 905, DateTimeKind.Local).AddTicks(1425),
                             EndDate = new DateTime(2025, 12, 2, 18, 0, 0, 0, DateTimeKind.Unspecified),
                             ImageUrl = "/images/5.jpg",
                             IsActive = true,
@@ -193,7 +199,7 @@ namespace Main.Migrations
                         new
                         {
                             Id = 6,
-                            CreatedAt = new DateTime(2025, 8, 28, 17, 52, 0, 763, DateTimeKind.Local).AddTicks(9341),
+                            CreatedAt = new DateTime(2025, 8, 29, 22, 46, 7, 905, DateTimeKind.Local).AddTicks(1431),
                             EndDate = new DateTime(2025, 9, 15, 18, 0, 0, 0, DateTimeKind.Unspecified),
                             ImageUrl = "/images/6.jpg",
                             IsActive = true,
@@ -205,7 +211,7 @@ namespace Main.Migrations
                         new
                         {
                             Id = 7,
-                            CreatedAt = new DateTime(2025, 8, 21, 17, 52, 0, 763, DateTimeKind.Local).AddTicks(9348),
+                            CreatedAt = new DateTime(2025, 8, 22, 22, 46, 7, 905, DateTimeKind.Local).AddTicks(1437),
                             EndDate = new DateTime(2025, 10, 12, 16, 0, 0, 0, DateTimeKind.Unspecified),
                             ImageUrl = "/images/7.jpg",
                             IsActive = true,
@@ -217,7 +223,7 @@ namespace Main.Migrations
                         new
                         {
                             Id = 8,
-                            CreatedAt = new DateTime(2025, 8, 23, 17, 52, 0, 763, DateTimeKind.Local).AddTicks(9356),
+                            CreatedAt = new DateTime(2025, 8, 24, 22, 46, 7, 905, DateTimeKind.Local).AddTicks(1464),
                             EndDate = new DateTime(2025, 11, 5, 17, 0, 0, 0, DateTimeKind.Unspecified),
                             ImageUrl = "/images/8.jpg",
                             IsActive = true,
@@ -229,7 +235,7 @@ namespace Main.Migrations
                         new
                         {
                             Id = 9,
-                            CreatedAt = new DateTime(2025, 8, 25, 17, 52, 0, 763, DateTimeKind.Local).AddTicks(9423),
+                            CreatedAt = new DateTime(2025, 8, 26, 22, 46, 7, 905, DateTimeKind.Local).AddTicks(1471),
                             EndDate = new DateTime(2025, 12, 11, 12, 0, 0, 0, DateTimeKind.Unspecified),
                             ImageUrl = "/images/9.jpg",
                             IsActive = true,
@@ -241,7 +247,7 @@ namespace Main.Migrations
                         new
                         {
                             Id = 10,
-                            CreatedAt = new DateTime(2025, 8, 20, 17, 52, 0, 763, DateTimeKind.Local).AddTicks(9431),
+                            CreatedAt = new DateTime(2025, 8, 21, 22, 46, 7, 905, DateTimeKind.Local).AddTicks(1477),
                             EndDate = new DateTime(2025, 10, 20, 18, 0, 0, 0, DateTimeKind.Unspecified),
                             ImageUrl = "/images/10.jpg",
                             IsActive = true,
@@ -253,7 +259,7 @@ namespace Main.Migrations
                         new
                         {
                             Id = 11,
-                            CreatedAt = new DateTime(2025, 8, 22, 17, 52, 0, 763, DateTimeKind.Local).AddTicks(9439),
+                            CreatedAt = new DateTime(2025, 8, 23, 22, 46, 7, 905, DateTimeKind.Local).AddTicks(1483),
                             EndDate = new DateTime(2025, 11, 15, 19, 0, 0, 0, DateTimeKind.Unspecified),
                             ImageUrl = "/images/11.jpg",
                             IsActive = true,

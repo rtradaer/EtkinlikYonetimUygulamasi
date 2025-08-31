@@ -22,6 +22,7 @@ namespace Main.Infrastructure.Extensions
         {
             services.AddScoped<IServiceManager, ServiceManager>();
             services.AddScoped<IEtkinlikService, EtkinlikManager>();
+            services.AddScoped<IAuthService, AuthManager>();
         }
 
         public static void Configure_Repository_Registration(this IServiceCollection services)

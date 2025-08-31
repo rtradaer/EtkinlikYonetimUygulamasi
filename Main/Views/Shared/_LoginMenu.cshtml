@@ -1,8 +1,9 @@
 @if (User.Identity.IsAuthenticated && User.IsInRole("User"))
 {
     <li class="nav-item">
-        <a class="nav-link" aria-current="page" asp-area="Admin" asp-controller="Dashboard" asp-action="Index">Profil</a>
+        <a class="nav-link" aria-current="page" asp-area="" asp-controller="Profile" asp-action="Index">Profil</a>
     </li>
+
 }
 
 
@@ -10,6 +11,10 @@
 {
     <li class="nav-item">
         <a class="nav-link" aria-current="page" asp-area="" asp-controller="Account" asp-route-returnUrl="@Context.Request.PathAndQuery()" asp-action="Logout">Çıkış Yap</a>
+    </li>
+    
+    <li class="nav-item">
+        <a class="nav-link">@await Component.InvokeAsync("UserName")</a>
     </li>
 }
 else
