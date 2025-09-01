@@ -21,6 +21,7 @@ public class EtkinlikRepository : RepositoryBase<Etkinlik>, IEtkinlikRepository
             .Where(e => e.EndDate > DateTime.Now);
     }
 
+
     public IQueryable<Etkinlik> GetAllEtkinlikWithDetails_Repo(EtkinlikRequestParameters p, int id)
     {
         return _context.Etkinlikler
@@ -31,13 +32,21 @@ public class EtkinlikRepository : RepositoryBase<Etkinlik>, IEtkinlikRepository
             .Where(e => e.EndDate > DateTime.Now);
     }
 
+    public IQueryable<Etkinlik> GetAllEtkinlikWithDetails_Repo2(EtkinlikRequestParameters p)
+    {
+        return _context.Etkinlikler
+            .OrderBy(e => e.StartDate)
+            .ToPaginate(p.PageNumber, p.PageSize)
+            .Where(e => e.IsActive)
+            .Where(e => e.EndDate > DateTime.Now);
+    }
+
     public Etkinlik? GetOneEtkinlik_Repo(int id, bool trackChanges) => FindByCondition(x => x.Id == id, trackChanges);
 
-    public void CreateEtkinlik_Repo(Etkinlik activity) => Create(activity);
+    public void CreateEtkinlik_Repo(Etkinlik etkinlik) => Create(etkinlik);
 
-    public void DeleteEtkinlik_Repo(Etkinlik activity) => Remove(activity);
+    public void DeleteEtkinlik_Repo(Etkinlik etkinlik) => Remove(etkinlik);
 
-    public void EditEtkinlik_Repo(Etkinlik activity) => Update(activity);
-
+    public void UpdateEtkinlik_Repo(Etkinlik etkinlik) => Update(etkinlik);
 
 }

@@ -1,6 +1,7 @@
 using System.ComponentModel;
 using System.Threading.Tasks;
 using Entities.Dtos;
+using Entities.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -38,7 +39,7 @@ public class ProfileController : Controller
             return View(userDto);
         }
 
-        if (_userManager.Users.Any(u => u.Email == userDto.Email))
+        if (_userManager.Users.Any(u => u.Email == userDto.Email && u.Id != userDto.Id))
         {
             ModelState.AddModelError("", "Bu E-mail'e sahip bir kullanıcı zaten var.");
             return View(userDto);
@@ -63,18 +64,19 @@ public class ProfileController : Controller
     {
         if (model.Password != model.ConfirmPassword)
         {
-            ModelState.AddModelError("","Parolalar uyuşmuyor.");
+            ModelState.AddModelError("", "Şifreler uyuşmuyor.");
             return View();
         }
 
-        var result = await _manager.AuthService.ResetPassword(model);
-
-        if (!result.Succeeded)
+        if (ModelState.IsValid)
         {
-            ModelState.AddModelError("",
-            "Parola en az 8 karakterden oluşmalı, büyük harf, küçük harf, özel karakter ve rakam içermelidir.");
+            var result = await _manager.AuthService.ResetPassword(model);
+            if (!result.Succeeded)
+            {
+                // ModelState.AddModelError("",
+                // "Şifre en az 8 karakterden oluşmalı, büyük harf, küçük harf, özel karakter ve rakam içermelidir.");
+            }
         }
-
         return View();
     }
 

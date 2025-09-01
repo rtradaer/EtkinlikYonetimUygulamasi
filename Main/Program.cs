@@ -31,5 +31,6 @@ app.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}");
 
 
 app.Configure_And_Check_Migration();
+app.Configure_DefaultAdminUser();
 
 app.Run();

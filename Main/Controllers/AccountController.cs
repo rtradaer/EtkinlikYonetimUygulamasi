@@ -1,4 +1,5 @@
 using Entities.Dtos;
+using Entities.Models;
 using Main.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;

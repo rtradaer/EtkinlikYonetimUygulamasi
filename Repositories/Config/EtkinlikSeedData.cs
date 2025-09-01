@@ -4,7 +4,7 @@ namespace Repositories.Config;
 
 public static class EtkinlikSeedData
 {
-    public static Etkinlik GetEtkinlikler(int index)
+    public static Etkinlik[] GetEtkinlikler()
     {
 
 
@@ -144,6 +144,6 @@ public static class EtkinlikSeedData
             }
         };
 
-        return etkinlikler[index];
+        return etkinlikler;
     }
 }

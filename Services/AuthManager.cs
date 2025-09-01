@@ -1,5 +1,6 @@
 using AutoMapper;
 using Entities.Dtos;
+using Entities.Models;
 using Microsoft.AspNetCore.Identity;
 using Services.Contracts;
 
@@ -34,8 +35,7 @@ public class AuthManager : IAuthService
     public async Task<IdentityResult> ResetPassword(ResetPasswordDto model)
     {
         var user = await GetOneUser(model.Email);
-        await _userManager.RemovePasswordAsync(user);
-        var result = await _userManager.AddPasswordAsync(user, model.Password);
+        var result = await _userManager.ChangePasswordAsync(user, model.CurrentPassword, model.Password);
         return result;
     }
 

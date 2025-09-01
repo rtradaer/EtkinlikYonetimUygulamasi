@@ -11,4 +11,5 @@ public class Etkinlik
     public DateTime EndDate { get; set; }
     public DateTime CreatedAt { get; set; }
     public bool IsActive { get; set; }
+    public string CreatedBy { get; set; } = "-";
 }

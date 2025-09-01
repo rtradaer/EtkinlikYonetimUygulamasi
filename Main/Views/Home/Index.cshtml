@@ -1,1 +1,12 @@
-﻿Home
+﻿@if (User.Identity.IsAuthenticated)
+{
+    <div class="display-6 text-center my-2">@await Component.InvokeAsync("UserName")</div>
+}
+else
+{
+    <div class="display-6 text-center my-2">Ana Sayfa</div>
+}
+
+<div class="my-5">
+    <partial name="_Cards" />
+</div>

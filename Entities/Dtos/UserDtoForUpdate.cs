@@ -4,6 +4,8 @@ namespace Entities.Dtos;
 
 public record UserDtoForUpdate
 {
+    public String? Id { get; init; }
+
     [DataType(DataType.Text)]
     public String? UserName { get; init; }
 

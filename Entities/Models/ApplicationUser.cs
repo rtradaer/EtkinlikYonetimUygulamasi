@@ -1,5 +1,7 @@
 using Microsoft.AspNetCore.Identity;
 
+namespace Entities.Models;
+
 public class ApplicationUser : IdentityUser
 {
     public String? FirstName { get; set; }

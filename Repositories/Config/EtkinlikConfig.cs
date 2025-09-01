@@ -11,17 +11,7 @@ public class EtkinlikConfig : IEntityTypeConfiguration<Etkinlik>
         builder.HasKey(e => e.Id);
 
         builder.HasData(
-            EtkinlikSeedData.GetEtkinlikler(0),
-            EtkinlikSeedData.GetEtkinlikler(1),
-            EtkinlikSeedData.GetEtkinlikler(2),
-            EtkinlikSeedData.GetEtkinlikler(3),
-            EtkinlikSeedData.GetEtkinlikler(4),
-            EtkinlikSeedData.GetEtkinlikler(5),
-            EtkinlikSeedData.GetEtkinlikler(6),
-            EtkinlikSeedData.GetEtkinlikler(7),
-            EtkinlikSeedData.GetEtkinlikler(8),
-            EtkinlikSeedData.GetEtkinlikler(9),
-            EtkinlikSeedData.GetEtkinlikler(10)
+            EtkinlikSeedData.GetEtkinlikler()
         );
     }
 }

@@ -1,0 +1,70 @@
+@model EtkinlikDto
+
+<div class="text-center">
+    <div class="display-6">Etkinliği Düzenle</div>
+</div>
+
+<form method="post" asp-action="Update" enctype="multipart/form-data">
+
+    <div class="text-danger" asp-validation-summary="All"></div>
+
+    <input type="hidden" asp-for="Id" />
+
+    <div class="form-group my-3">
+        <label asp-for="Title">Başlık</label>
+        <input asp-for="Title" class="form-control" />
+    </div>
+
+    <div class="form-group my-3">
+        <label asp-for="StartDate">Başlangıç Tarihi - Zamanı</label>
+        <input asp-for="StartDate" class="form-control" />
+    </div>
+
+    <div class="form-group my-3">
+        <label asp-for="EndDate">Bitiş Tarihi - Zamanı</label>
+        <input asp-for="EndDate" class="form-control" />
+    </div>
+
+    <div class="form-group my-3">
+        <label asp-for="ShortDescription">Kısa Açıklama</label>
+        <input asp-for="ShortDescription" class="form-control" />
+    </div>
+
+    <div class="form-group my-3">
+        <label asp-for="LongDescription">Uzun Açıklama</label>
+        <input asp-for="LongDescription" class="form-control" />
+    </div>
+
+    <div class="form-group" my-3>
+        <img class="rounded shadow" width="150" src="@Model?.ImageUrl" />
+    </div>
+
+    <div class="form-group my-3">
+        <label asp-for="ImageUrl">Resim Dosyası</label>
+        <input name="file" type="file" class="form-control" />
+    </div>
+
+    <div class="form-check form-switch my-3">
+        <label asp-for="IsActive">Aktif</label>
+        <input type="checkbox" asp-for="IsActive" class="form-check-input" />
+    </div>
+
+    <div class="form-group my-3">
+        <div class="d-flex justify-content-between align-items-center">
+            <div class="btn-group">
+                <button class="btn btn-secondary" type="submit">
+                    <i class="fa fa-save"></i>
+                    Kaydet
+                </button>
+                <a asp-action="Index" class="btn btn-outline-secondary mx-2">
+                    <i class="fa-solid fa-backward"></i>
+                    Geri
+                </a>
+            </div>
+            <a asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-danger ms-auto">
+                <i class="fa-solid fa-trash"></i>
+                Sil
+            </a>
+        </div>
+    </div>
+</form>

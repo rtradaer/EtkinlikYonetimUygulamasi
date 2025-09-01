@@ -1,0 +1,61 @@
+<div class="row justify-content-center">
+    @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+    {
+        <div class="col-auto">
+            <div class="card bg-primary text-white" style="width: 18rem;">
+                <div class="card-body text-center">
+                    <h5 class="card-title">
+                        <a asp-area="Admin" asp-controller="EtkinlikYonetim" asp-action="Index"
+                            class="card-link text-white">Etkinlik Yönetimi</a>
+                    </h5>
+                </div>
+            </div>
+        </div>
+    }
+
+    @if (User.Identity.IsAuthenticated && User.IsInRole("User"))
+    {
+        <div class="col-auto">
+            <div class="card bg-danger text-white" style="width: 18rem;">
+                <div class="card-body text-center">
+                    <h5 class="card-title">
+                        <a asp-controller="Profile" asp-action="Index" class="card-link text-white">Profil</a>
+                    </h5>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-auto">
+            <div class="card bg-warning text-white" style="width: 18rem;">
+                <div class="card-body text-center">
+                    <h5 class="card-title">
+                        <a asp-controller="Account" asp-action="Logout" class="card-link text-white">Çıkış Yap</a>
+                    </h5>
+                </div>
+            </div>
+        </div>
+    }
+
+    @if (!User.Identity.IsAuthenticated)
+    {
+        <div class="col-auto">
+            <div class="card bg-danger text-white" style="width: 18rem;">
+                <div class="card-body text-center">
+                    <h5 class="card-title">
+                        <a asp-controller="Account" asp-action="Login" class="card-link text-white">Giriş Yap</a>
+                    </h5>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-auto">
+            <div class="card bg-warning text-white" style="width: 18rem;">
+                <div class="card-body text-center">
+                    <h5 class="card-title">
+                        <a asp-controller="Account" asp-action="Register" class="card-link text-white">Kayıt Ol</a>
+                    </h5>
+                </div>
+            </div>
+        </div>
+    }
+</div>

@@ -1,3 +1,4 @@
+using Entities.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
@@ -22,7 +23,10 @@ public class UserNameViewComponent : ViewComponent
         if (user == null)
             return string.Empty;
 
-        // İsim ve soyisim birleştir
+
+        if (HttpContext.User.IsInRole("Admin"))
+            return user.FirstName ?? string.Empty;
+
         return string.Concat(user.FirstName ?? "", " ", user.LastName ?? "").Trim();
     }
 }
