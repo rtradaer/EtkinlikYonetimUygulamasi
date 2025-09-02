@@ -16,9 +16,9 @@ public class EtkinlikRepository : RepositoryBase<Etkinlik>, IEtkinlikRepository
     {
         return _context.Etkinlikler
             .OrderByDescending(e => e.CreatedAt)
-            .ToPaginate(p.PageNumber, p.PageSize)
             .Where(e => e.IsActive)
-            .Where(e => e.EndDate > DateTime.Now);
+            .Where(e => e.EndDate > DateTime.Now)
+            .ToPaginate(p.PageNumber, p.PageSize);
     }
 
 
@@ -26,19 +26,18 @@ public class EtkinlikRepository : RepositoryBase<Etkinlik>, IEtkinlikRepository
     {
         return _context.Etkinlikler
             .OrderByDescending(e => e.CreatedAt)
-            .ToPaginate(p.PageNumber, p.PageSize)
             .Where(e => e.Id != id)
+            .Where(e => e.EndDate > DateTime.Now)
             .Where(e => e.IsActive)
-            .Where(e => e.EndDate > DateTime.Now);
+            .ToPaginate(p.PageNumber, p.PageSize);
     }
 
     public IQueryable<Etkinlik> GetAllEtkinlikWithDetails_Repo2(EtkinlikRequestParameters p)
     {
         return _context.Etkinlikler
             .OrderBy(e => e.StartDate)
-            .ToPaginate(p.PageNumber, p.PageSize)
-            .Where(e => e.IsActive)
-            .Where(e => e.EndDate > DateTime.Now);
+            .Where(e => e.EndDate > DateTime.Now)
+            .ToPaginate(p.PageNumber, p.PageSize);
     }
 
     public Etkinlik? GetOneEtkinlik_Repo(int id, bool trackChanges) => FindByCondition(x => x.Id == id, trackChanges);

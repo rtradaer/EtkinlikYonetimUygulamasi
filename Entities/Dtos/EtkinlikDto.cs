@@ -5,9 +5,10 @@ namespace Entities.Dtos;
 public record EtkinlikDto
 {
     public int Id { get; init; }
-    
+
     [Required(ErrorMessage = "Başlık alanı boş bırakılamaz.")]
-    public String? Title { get; init; }  // En fazla 255 karakter
+    [StringLength(255, ErrorMessage = "Başlık en fazla 255 karakter olabilir.")]
+    public String? Title { get; init; } 
     
     [Required(ErrorMessage = "Başlangıç Tarihi alanı boş bırakılamaz.")]
     public DateTime StartDate { get; init; }  // Takvim üzerinden seçim
@@ -16,9 +17,10 @@ public record EtkinlikDto
     public DateTime EndDate { get; init; } // Takvim üzerinden seçim
     
     public String? ImageUrl { get; set; }  // En fazla 2 MB
-    
+
     [Required(ErrorMessage = "Kısa Açıklama alanı boş bırakılamaz.")]
-    public String? ShortDescription { get; init; } // En fazla 512 karakter düz metin
+    [StringLength(512, ErrorMessage = "Kısa Açıklama en fazla 512 karakter olabilir.")]
+    public String? ShortDescription { get; init; } 
     
     [Required(ErrorMessage = "Uzun Açıklama alanı boş bırakılamaz.")]
     public String? LongDescription { get; init; }  // Html editör üzerinden veri giriş

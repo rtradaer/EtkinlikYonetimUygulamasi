@@ -56,8 +56,39 @@ public class EtkinlikYonetimController : Controller
     {
         if (ModelState.IsValid)
         {
-            string path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images", file.FileName);
+            var plainText = System.Text.RegularExpressions.Regex.Replace(etkinlikDto.LongDescription ?? "", "<.*?>", string.Empty).Trim();
+            if (string.IsNullOrWhiteSpace(plainText))
+            {
+                ModelState.AddModelError("LongDescription", "Uzun Açıklama alanı boş bırakılamaz.");
+                return View(etkinlikDto);
+            }
 
+            if (etkinlikDto.StartDate > etkinlikDto.EndDate)
+            {
+                ModelState.AddModelError("", "Geçerli bir tarih aralığı seçiniz.");
+                return View(etkinlikDto);
+            }
+
+            if (_manager.EtkinlikService.GetAllEtkinlik(false).Any(e => e.Title == etkinlikDto.Title))
+            {
+                ModelState.AddModelError("", "Bu başlıkta bir etkinlik zaten var.");
+                return View(etkinlikDto);
+            }
+
+            var allowedExtensions = new[] { ".jpg", ".jpeg", ".png" };
+            var ext = Path.GetExtension(file.FileName).ToLowerInvariant();
+            if (!allowedExtensions.Contains(ext))
+            {
+                ModelState.AddModelError("file", "Sadece jpg, jpeg veya png formatında dosya yükleyebilirsiniz.");
+                return View(etkinlikDto);
+            }
+            if (file.Length > 2 * 1024 * 1024)
+            {
+                ModelState.AddModelError("file", "Dosya boyutu 2 MB'dan büyük olamaz.");
+                return View(etkinlikDto);
+            }
+
+            string path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images", file.FileName);
             using (var stream = new FileStream(path, FileMode.Create))
             {
                 await file.CopyToAsync(stream);
@@ -70,7 +101,7 @@ public class EtkinlikYonetimController : Controller
             _manager.EtkinlikService.CreateEtkinlik(etkinlikDto);
             return RedirectToAction("Index");
         }
-        return View();
+        return View(etkinlikDto);
     }
 
     public IActionResult Update([FromRoute(Name = "id")] int id)
@@ -83,15 +114,47 @@ public class EtkinlikYonetimController : Controller
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> Update([FromForm] EtkinlikDto etkinlikDto, IFormFile file)
     {
+        var plainText = System.Text.RegularExpressions.Regex.Replace(etkinlikDto.LongDescription ?? "", "<.*?>", string.Empty).Trim();
+        if (string.IsNullOrWhiteSpace(plainText))
+        {
+            ModelState.AddModelError("LongDescription", "Uzun Açıklama alanı boş bırakılamaz.");
+            return View(etkinlikDto);
+        }
+
 
         if (!string.IsNullOrEmpty(etkinlikDto.Title)
-        && !string.IsNullOrEmpty(etkinlikDto.ShortDescription)
-        && !string.IsNullOrEmpty(etkinlikDto.LongDescription)
-        && etkinlikDto.StartDate != default
-        && etkinlikDto.EndDate != default)
+            && !string.IsNullOrEmpty(etkinlikDto.ShortDescription)
+            && !string.IsNullOrEmpty(etkinlikDto.LongDescription)
+            && etkinlikDto.StartDate != default
+            && etkinlikDto.EndDate != default)
         {
+            if (etkinlikDto.StartDate > etkinlikDto.EndDate)
+            {
+                ModelState.AddModelError("", "Geçerli bir tarih aralığı seçiniz.");
+                return View(etkinlikDto);
+            }
+            
+            if (_manager.EtkinlikService.GetAllEtkinlik(false).Any(e => e.Title == etkinlikDto.Title && e.Id != etkinlikDto.Id))
+            {
+                ModelState.AddModelError("", "Bu başlıkta bir etkinlik zaten var.");
+                return View(etkinlikDto);
+            }
+
             if (file is not null)
             {
+                var allowedExtensions = new[] { ".jpg", ".jpeg", ".png" };
+                var ext = Path.GetExtension(file.FileName).ToLowerInvariant();
+                if (!allowedExtensions.Contains(ext))
+                {
+                    ModelState.AddModelError("file", "Sadece jpg, jpeg veya png formatında dosya yükleyebilirsiniz.");
+                    return View(etkinlikDto);
+                }
+                if (file.Length > 2 * 1024 * 1024)
+                {
+                    ModelState.AddModelError("file", "Dosya boyutu 2 MB'dan büyük olamaz.");
+                    return View(etkinlikDto);
+                }
+
                 string path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images", file.FileName);
 
                 using (var stream = new FileStream(path, FileMode.Create))
@@ -111,7 +174,7 @@ public class EtkinlikYonetimController : Controller
             return RedirectToAction("Index");
         }
 
-        return View();
+        return View(etkinlikDto);
     }
 
     public IActionResult Delete([FromRoute(Name = "id")] int id)

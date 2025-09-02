@@ -70,6 +70,19 @@ public class ProfileController : Controller
 
         if (ModelState.IsValid)
         {
+            // Şifrelenmiş parola oluştur ve kaydet
+            var user = await _manager.AuthService.GetOneUser(model.Email);
+            user.EncryptedPassword = Services.Helpers.EncryptionHelper.Encrypt(model.Password);
+            await _manager.AuthService.Update(new UserDtoForUpdate {
+                Id = user.Id,
+                UserName = user.UserName,
+                FirstName = user.FirstName,
+                LastName = user.LastName,
+                Email = user.Email,
+                BirthDate = user.BirthDate,
+                PlainPassword = model.Password
+            });
+
             var result = await _manager.AuthService.ResetPassword(model);
             if (!result.Succeeded)
             {

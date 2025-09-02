@@ -12,7 +12,7 @@ using Repositories;
 namespace Main.Migrations
 {
     [DbContext(typeof(RepositoryContext))]
-    [Migration("20250901145136_InitialCreate")]
+    [Migration("20250902155604_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -46,6 +46,9 @@ namespace Main.Migrations
 
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("bit");
+
+                    b.Property<string>("EncryptedPassword")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("FirstName")
                         .HasColumnType("nvarchar(max)");
@@ -143,7 +146,7 @@ namespace Main.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2025, 8, 22, 17, 51, 36, 568, DateTimeKind.Local).AddTicks(7338),
+                            CreatedAt = new DateTime(2025, 8, 23, 18, 56, 4, 227, DateTimeKind.Local).AddTicks(1847),
                             CreatedBy = "-",
                             EndDate = new DateTime(2025, 9, 10, 18, 0, 0, 0, DateTimeKind.Unspecified),
                             ImageUrl = "/images/1.jpg",
@@ -156,7 +159,7 @@ namespace Main.Migrations
                         new
                         {
                             Id = 2,
-                            CreatedAt = new DateTime(2025, 8, 25, 17, 51, 36, 568, DateTimeKind.Local).AddTicks(7347),
+                            CreatedAt = new DateTime(2025, 8, 26, 18, 56, 4, 227, DateTimeKind.Local).AddTicks(1857),
                             CreatedBy = "-",
                             EndDate = new DateTime(2025, 10, 5, 17, 0, 0, 0, DateTimeKind.Unspecified),
                             ImageUrl = "/images/2.jpg",
@@ -169,7 +172,7 @@ namespace Main.Migrations
                         new
                         {
                             Id = 3,
-                            CreatedAt = new DateTime(2025, 8, 27, 17, 51, 36, 568, DateTimeKind.Local).AddTicks(7349),
+                            CreatedAt = new DateTime(2025, 8, 28, 18, 56, 4, 227, DateTimeKind.Local).AddTicks(1859),
                             CreatedBy = "-",
                             EndDate = new DateTime(2025, 11, 20, 19, 0, 0, 0, DateTimeKind.Unspecified),
                             ImageUrl = "/images/3.jpg",
@@ -182,7 +185,7 @@ namespace Main.Migrations
                         new
                         {
                             Id = 4,
-                            CreatedAt = new DateTime(2025, 8, 29, 17, 51, 36, 568, DateTimeKind.Local).AddTicks(7350),
+                            CreatedAt = new DateTime(2025, 8, 30, 18, 56, 4, 227, DateTimeKind.Local).AddTicks(1860),
                             CreatedBy = "-",
                             EndDate = new DateTime(2025, 9, 25, 17, 0, 0, 0, DateTimeKind.Unspecified),
                             ImageUrl = "/images/4.jpg",
@@ -195,7 +198,7 @@ namespace Main.Migrations
                         new
                         {
                             Id = 5,
-                            CreatedAt = new DateTime(2025, 8, 30, 17, 51, 36, 568, DateTimeKind.Local).AddTicks(7351),
+                            CreatedAt = new DateTime(2025, 8, 31, 18, 56, 4, 227, DateTimeKind.Local).AddTicks(1861),
                             CreatedBy = "-",
                             EndDate = new DateTime(2025, 12, 2, 18, 0, 0, 0, DateTimeKind.Unspecified),
                             ImageUrl = "/images/5.jpg",
@@ -208,7 +211,7 @@ namespace Main.Migrations
                         new
                         {
                             Id = 6,
-                            CreatedAt = new DateTime(2025, 8, 31, 17, 51, 36, 568, DateTimeKind.Local).AddTicks(7353),
+                            CreatedAt = new DateTime(2025, 9, 1, 18, 56, 4, 227, DateTimeKind.Local).AddTicks(1863),
                             CreatedBy = "-",
                             EndDate = new DateTime(2025, 9, 15, 18, 0, 0, 0, DateTimeKind.Unspecified),
                             ImageUrl = "/images/6.jpg",
@@ -221,7 +224,7 @@ namespace Main.Migrations
                         new
                         {
                             Id = 7,
-                            CreatedAt = new DateTime(2025, 8, 24, 17, 51, 36, 568, DateTimeKind.Local).AddTicks(7354),
+                            CreatedAt = new DateTime(2025, 8, 25, 18, 56, 4, 227, DateTimeKind.Local).AddTicks(1864),
                             CreatedBy = "-",
                             EndDate = new DateTime(2025, 10, 12, 16, 0, 0, 0, DateTimeKind.Unspecified),
                             ImageUrl = "/images/7.jpg",
@@ -234,7 +237,7 @@ namespace Main.Migrations
                         new
                         {
                             Id = 8,
-                            CreatedAt = new DateTime(2025, 8, 26, 17, 51, 36, 568, DateTimeKind.Local).AddTicks(7356),
+                            CreatedAt = new DateTime(2025, 8, 27, 18, 56, 4, 227, DateTimeKind.Local).AddTicks(1866),
                             CreatedBy = "-",
                             EndDate = new DateTime(2025, 11, 5, 17, 0, 0, 0, DateTimeKind.Unspecified),
                             ImageUrl = "/images/8.jpg",
@@ -247,7 +250,7 @@ namespace Main.Migrations
                         new
                         {
                             Id = 9,
-                            CreatedAt = new DateTime(2025, 8, 28, 17, 51, 36, 568, DateTimeKind.Local).AddTicks(7357),
+                            CreatedAt = new DateTime(2025, 8, 29, 18, 56, 4, 227, DateTimeKind.Local).AddTicks(1867),
                             CreatedBy = "-",
                             EndDate = new DateTime(2025, 12, 11, 12, 0, 0, 0, DateTimeKind.Unspecified),
                             ImageUrl = "/images/9.jpg",
@@ -260,7 +263,7 @@ namespace Main.Migrations
                         new
                         {
                             Id = 10,
-                            CreatedAt = new DateTime(2025, 8, 23, 17, 51, 36, 568, DateTimeKind.Local).AddTicks(7358),
+                            CreatedAt = new DateTime(2025, 8, 24, 18, 56, 4, 227, DateTimeKind.Local).AddTicks(1868),
                             CreatedBy = "-",
                             EndDate = new DateTime(2025, 10, 20, 18, 0, 0, 0, DateTimeKind.Unspecified),
                             ImageUrl = "/images/10.jpg",
@@ -273,7 +276,7 @@ namespace Main.Migrations
                         new
                         {
                             Id = 11,
-                            CreatedAt = new DateTime(2025, 8, 25, 17, 51, 36, 568, DateTimeKind.Local).AddTicks(7360),
+                            CreatedAt = new DateTime(2025, 8, 26, 18, 56, 4, 227, DateTimeKind.Local).AddTicks(1870),
                             CreatedBy = "-",
                             EndDate = new DateTime(2025, 11, 15, 19, 0, 0, 0, DateTimeKind.Unspecified),
                             ImageUrl = "/images/11.jpg",

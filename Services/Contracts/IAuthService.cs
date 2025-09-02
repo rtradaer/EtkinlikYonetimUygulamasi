@@ -7,6 +7,7 @@ namespace Services.Contracts;
 public interface IAuthService
 {
     Task<ApplicationUser> GetOneUser(string eMail);
+    IEnumerable<ApplicationUser> GetAllUsers();
     Task<UserDtoForUpdate> GetOneUserForUpdate(string eMail);
     Task<IdentityResult> ResetPassword(ResetPasswordDto model);
     Task Update(UserDtoForUpdate userDto);

@@ -3,6 +3,7 @@ using Entities.Models;
 using Main.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Services.Helpers;
 
 namespace Main.Controllers;
 
@@ -10,7 +11,7 @@ public class AccountController : Controller
 {
     private readonly UserManager<ApplicationUser> _userManager;
     private readonly SignInManager<ApplicationUser> _signInManager;
-   
+
 
     public AccountController(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager)
     {
@@ -71,13 +72,16 @@ public class AccountController : Controller
             return View(model);
         }
 
+        var encryptedPassword = EncryptionHelper.Encrypt(model.Password);
+
         ApplicationUser user = new ApplicationUser()
         {
             FirstName = model.FirstName,
             LastName = model.LastName,
             Email = model.Email,
             BirthDate = model.BirthDate,
-            UserName = model.Email
+            UserName = model.Email,
+            EncryptedPassword = encryptedPassword
         };
 
         var result = await _userManager.CreateAsync(user, model.Password);
@@ -85,7 +89,10 @@ public class AccountController : Controller
         {
             var roleResult = await _userManager.AddToRoleAsync(user, "User");
             if (roleResult.Succeeded)
+            {
+                TempData["success"] = "Kayıt olma işlemi başarılı.";
                 return RedirectToAction("Login");
+            }
         }
         else
         {

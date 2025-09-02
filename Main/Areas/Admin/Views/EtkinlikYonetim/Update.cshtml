@@ -16,13 +16,15 @@
     </div>
 
     <div class="form-group my-3">
-        <label asp-for="StartDate">Başlangıç Tarihi - Zamanı</label>
-        <input asp-for="StartDate" class="form-control" />
+        <label asp-for="StartDate">Başlangıç Tarihi</label>
+        <input asp-for="StartDate" class="form-control" min="@DateTime.Now.ToString("yyyy-MM-ddTHH:mm")"
+            max="@DateTime.Now.AddYears(4).ToString("yyyy-MM-ddTHH:mm")" />
     </div>
 
     <div class="form-group my-3">
-        <label asp-for="EndDate">Bitiş Tarihi - Zamanı</label>
-        <input asp-for="EndDate" class="form-control" />
+        <label asp-for="EndDate">Bitiş Tarihi</label>
+        <input asp-for="EndDate" class="form-control" min="@DateTime.Now.ToString("yyyy-MM-ddTHH:mm")"
+            max="@DateTime.Now.AddYears(4).ToString("yyyy-MM-ddTHH:mm")" />
     </div>
 
     <div class="form-group my-3">
@@ -32,8 +34,34 @@
 
     <div class="form-group my-3">
         <label asp-for="LongDescription">Uzun Açıklama</label>
-        <input asp-for="LongDescription" class="form-control" />
+        <div id="quillEditor" style="height: 200px;"></div>
+        <textarea asp-for="LongDescription" class="form-control d-none" id="longDescHidden"></textarea>
     </div>
+
+    <link href="https://cdn.quilljs.com/1.3.7/quill.snow.css" rel="stylesheet">
+    <script src="https://cdn.quilljs.com/1.3.7/quill.min.js"></script>
+    <script>
+        var quill = new Quill('#quillEditor', {
+            theme: 'snow',
+            modules: {
+                toolbar: [
+                    [{ header: [1, 2, false] }],
+                    ['bold', 'italic', 'underline'],
+                    ['link', 'blockquote', 'code-block', 'image'],
+                    [{ list: 'ordered' }, { list: 'bullet' }]
+                ]
+            }
+        });
+
+        var oldDesc = document.getElementById('longDescHidden').value;
+        if (oldDesc) {
+            quill.root.innerHTML = oldDesc;
+        }
+
+        document.querySelector('form').addEventListener('submit', function (e) {
+            document.getElementById('longDescHidden').value = quill.root.innerHTML;
+        });
+    </script>
 
     <div class="form-group" my-3>
         <img class="rounded shadow" width="150" src="@Model?.ImageUrl" />
@@ -61,10 +89,40 @@
                     Geri
                 </a>
             </div>
-            <a asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-danger ms-auto">
-                <i class="fa-solid fa-trash"></i>
-                Sil
+            <a data-bs-toggle="modal" data-bs-target="#deleteModal" title="Delete" class="btn btn-secondary"
+                data-id="@Model.Id">
+                <i class="fa fa-trash"></i>
             </a>
         </div>
     </div>
 </form>
+
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@ Silme popup'ı için modal @@@@@@@@@@@@@@@@@@@@@@@@ --->
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Silmek istediğinizden emin misiniz?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">İptal</button>
+                <a id="deleteConfirmBtn" class="btn btn-primary" asp-action="Delete">Evet</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    var deleteModal = document.getElementById('deleteModal');
+    deleteModal.addEventListener('show.bs.modal', function (event) {
+        var button = event.relatedTarget;
+        var id = button.getAttribute('data-id');
+        var confirmBtn = document.getElementById('deleteConfirmBtn');
+        confirmBtn.setAttribute('href', '/Admin/EtkinlikYonetim/Delete/' + id);
+    });
+</script>
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@ Silme popup'ı için modal @@@@@@@@@@@@@@@@@@@@@@@@ --->

@@ -10,7 +10,6 @@ public static class EtkinlikRepositoryExtension
         return etkinlikler
             .Skip((pageNumber - 1) * pageSize)
             .Take(pageSize);
-
     }
 
 }

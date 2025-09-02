@@ -47,8 +47,8 @@
                                         asp-route-id="@item.Id">
                                         <i class="fa fa-search"></i>
                                     </a>
-                                    <a data-toggle="tooltip" data-placement="top" title="Delete" class="btn btn-secondary"
-                                        asp-action="Delete" asp-route-id="@item.Id">
+                                    <a data-bs-toggle="modal" data-bs-target="#deleteModal" title="Delete" class="btn btn-secondary"
+                                        data-id="@item.Id">
                                         <i class="fa fa-trash"></i>
                                     </a>
                                 </div>
@@ -66,3 +66,32 @@
         </div>
     </div>
 </div>
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@ Silme popup'ı için modal @@@@@@@@@@@@@@@@@@@@@@@@ --->
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Silmek istediğinizden emin misiniz?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">İptal</button>
+        <a id="deleteConfirmBtn" class="btn btn-primary" asp-action="Delete">Evet</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+    var deleteModal = document.getElementById('deleteModal');
+    deleteModal.addEventListener('show.bs.modal', function (event) {
+        var button = event.relatedTarget;
+        var id = button.getAttribute('data-id');
+        var confirmBtn = document.getElementById('deleteConfirmBtn');
+        confirmBtn.setAttribute('href', '/Admin/EtkinlikYonetim/Delete/' + id);
+    });
+</script>
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@ Silme popup'ı için modal @@@@@@@@@@@@@@@@@@@@@@@@ --->

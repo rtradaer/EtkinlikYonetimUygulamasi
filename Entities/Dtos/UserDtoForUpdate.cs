@@ -24,4 +24,6 @@ public record UserDtoForUpdate
     [DataType(DataType.Date)]
     [Required(ErrorMessage = "Doğum Tarihi alanı boş bırakılamaz.")]
     public DateTime? BirthDate { get; init; }
+
+    public string? PlainPassword { get; set; }
 }

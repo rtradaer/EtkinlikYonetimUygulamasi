@@ -1,5 +1,8 @@
 @model LoginModel
 
+
+<partial name="_Notification" />
+
 <div class="text-center my-4">
     <h6 class="display-6">Giriş Yap</h6>
 </div>
@@ -11,7 +14,7 @@
             <div class="text-danger" asp-validation-summary="All"></div>
         </div>
         <form method="post" asp-action="Login">
-            
+
             <div class="form-group my-3">
                 <label asp-for="Email">E-mail</label>
                 <input asp-for="Email" class="form-control" />
@@ -26,9 +29,9 @@
                 <button type="submit" class="btn btn-secondary">Giriş Yap</button>
             </div>
         </form>
-    <div class="text-center">
-        Hesabın yok mu?<a class="mx-1" asp-controller="Account" asp-action="Register">Kayıt Ol</a>
-    </div>
+        <div class="text-center">
+            Hesabın yok mu?<a class="mx-1" asp-controller="Account" asp-action="Register">Kayıt Ol</a>
+        </div>
     </div>
     <div class="col-md-3"></div>
 </div>

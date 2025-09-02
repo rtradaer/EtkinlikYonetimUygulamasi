@@ -11,6 +11,17 @@
                 </div>
             </div>
         </div>
+
+        <div class="col-auto">
+            <div class="card bg-primary text-white" style="width: 18rem;">
+                <div class="card-body text-center">
+                    <h5 class="card-title">
+                        <a asp-area="Admin" asp-controller="PasswordDecrypt" asp-action="Index"
+                            class="card-link text-white">Parola Decrypt</a>
+                    </h5>
+                </div>
+            </div>
+        </div>
     }
 
     @if (User.Identity.IsAuthenticated && User.IsInRole("User"))

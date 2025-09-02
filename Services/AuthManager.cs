@@ -1,3 +1,4 @@
+using Services.Helpers;
 using AutoMapper;
 using Entities.Dtos;
 using Entities.Models;
@@ -16,6 +17,8 @@ public class AuthManager : IAuthService
         _userManager = userManager;
         _mapper = mapper;
     }
+
+    public IEnumerable<ApplicationUser> GetAllUsers() => _userManager.Users.ToList();
 
     public async Task<ApplicationUser> GetOneUser(string eMail)
     {
@@ -47,8 +50,13 @@ public class AuthManager : IAuthService
         user.Email = userDto.Email;
         user.BirthDate = userDto.BirthDate;
         user.UserName = userDto.Email;
-        var result = await _userManager.UpdateAsync(user);
 
+        if (!string.IsNullOrEmpty(userDto.PlainPassword))
+        {
+            user.EncryptedPassword = EncryptionHelper.Encrypt(userDto.PlainPassword);
+        }
+
+        var result = await _userManager.UpdateAsync(user);
         return;
     }
 }
