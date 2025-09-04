@@ -99,14 +99,17 @@ public class ProfileController : Controller
                         ModelState.AddModelError("", "Parola en az bir küçük karakter içermelidir.");
                     else if (item.Code.Contains("PasswordRequiresUpper"))
                         ModelState.AddModelError("", "Parola en az bir büyük karakter içermelidir.");
+
+                    return View();
                 }
                 ModelState.AddModelError("",
                 "Mevcut parolanız hatalı.");
                 return View();
             }
+            TempData["success"] = "Parolanız başarıyla değiştirildi.";
+            return RedirectToAction("Index");
         }
-        TempData["success"] = "Parolanız başarıyla değiştirildi.";
-        return RedirectToAction("Index");
+        return View();
     }
 
 }
