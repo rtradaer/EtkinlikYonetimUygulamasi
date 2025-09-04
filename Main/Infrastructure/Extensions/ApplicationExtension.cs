@@ -24,7 +24,7 @@ public static class ApplicationExtension
     public static async void Configure_DefaultAdminUser(this IApplicationBuilder app)
     {
         const string adminUser = "admin@admin.com";
-        const string adminPassword = "Admin123@";
+        const string adminPassword = "Admin123@#$$";
 
         //UserManager
         UserManager<ApplicationUser> userManager = app

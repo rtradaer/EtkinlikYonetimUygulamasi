@@ -46,9 +46,8 @@ public class ProfileController : Controller
         }
 
         await _manager.AuthService.Update(userDto);
-        await _signInManager.RefreshSignInAsync(await _manager.AuthService.GetOneUser(userDto.Email));
-        TempData["success"] = "Bilgileriniz güncellendi.";
-        return RedirectToAction("Index");
+        await _signInManager.RefreshSignInAsync(await _manager.AuthService.GetOneUser(userDto.Email)); // 27 eski emaili almasın 
+        return Redirect("/");
     }
 
     public IActionResult Reset([FromRoute(Name = "id")] string id)
@@ -74,8 +73,7 @@ public class ProfileController : Controller
             // Şifrelenmiş parola oluştur ve kaydet
             var user = await _manager.AuthService.GetOneUser(model.Email);
             user.EncryptedPassword = Services.Helpers.EncryptionHelper.Encrypt(model.Password);
-            await _manager.AuthService.Update(new UserDtoForUpdate
-            {
+            await _manager.AuthService.Update(new UserDtoForUpdate {
                 Id = user.Id,
                 UserName = user.UserName,
                 FirstName = user.FirstName,
@@ -88,26 +86,11 @@ public class ProfileController : Controller
             var result = await _manager.AuthService.ResetPassword(model);
             if (!result.Succeeded)
             {
-                foreach (var item in result.Errors)
-                {
-                    if (item.Code.Contains("PasswordTooShort"))
-                        ModelState.AddModelError("", "Parola en az 8 karakterden oluşmalıdır.");
-                    else if (item.Code.Contains("PasswordRequiresNonAlphanumeric"))
-                        ModelState.AddModelError("", "Parola en az bir özel karakter içermelidir.");
-                    else if (item.Code.Contains("PasswordRequiresDigit"))
-                        ModelState.AddModelError("", "Parola en az bir rakam içermelidir.");
-                    else if (item.Code.Contains("PasswordRequiresLower"))
-                        ModelState.AddModelError("", "Parola en az bir küçük karakter içermelidir.");
-                    else if (item.Code.Contains("PasswordRequiresUpper"))
-                        ModelState.AddModelError("", "Parola en az bir büyük karakter içermelidir.");
-                }
-                ModelState.AddModelError("",
-                "Mevcut parolanız hatalı.");
-                return View();
+                // ModelState.AddModelError("",
+                // "Şifre en az 8 karakterden oluşmalı, büyük harf, küçük harf, özel karakter ve rakam içermelidir.");
             }
         }
-        TempData["success"] = "Parolanız başarıyla değiştirildi.";
-        return RedirectToAction("Index");
+        return View();
     }
 
 }
