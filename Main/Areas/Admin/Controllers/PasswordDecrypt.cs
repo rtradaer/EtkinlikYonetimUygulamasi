@@ -27,8 +27,15 @@ public class PasswordDecrypt : Controller
     [HttpPost]
     public async Task<IActionResult> Index([FromForm] DecryptionDto decryptionDto)
     {
-        var user = await _manager.AuthService.GetOneUser(decryptionDto.Email);
-        decryptionDto.EncryptedPassword = user.EncryptedPassword;
+        try
+        {
+            var user = await _manager.AuthService.GetOneUser(decryptionDto.Email);
+            decryptionDto.EncryptedPassword = user.EncryptedPassword;
+        }
+        catch (Exception)
+        {
+            ModelState.AddModelError("Email", "Kullanıcı bulunamadı.");
+        }
         return View(decryptionDto);
     }
 
